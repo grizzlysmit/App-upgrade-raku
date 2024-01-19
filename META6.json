@@ -1,0 +1,29 @@
+{
+  "version": "0.1.0",
+  "license": "LGPL-3.0-or-later",
+  "depends": [
+    ""
+  ],
+  "auth": "zef:grizzlysmit",
+  "test-depends": [
+    ""
+  ],
+  "perl": "6.d",
+  "source-url": "https://github.com/grizzlysmit/App-upgrade-raku.git",
+  "description": "A Raku application for .",
+  "name": "App::upgrade-raku.raku",
+  "tags": [
+    ""
+  ],
+  "support": {
+    "source": "https://github.com/grizzlysmit/App-upgrade-raku.git",
+    "email": "grizzly@smit.id.au",
+    "bugtracker": "https://github.com/grizzlysmit/App-upgrade-raku/issues"
+  },
+  "provides": {
+    "App::upgrade-raku": "bin/upgrade-raku.raku"
+  },
+  "authors": [
+    "Francis Grizzly Smit <grizzly@smit.id.au>"
+  ]
+}
