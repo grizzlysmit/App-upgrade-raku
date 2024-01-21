@@ -1,0 +1,17 @@
+{
+    "docs": "docs",
+    "only-app": true,
+    "markdown-path": "README.md",
+    "exts": [
+        "rakumod",
+        "raku",
+        "rakudoc"
+    ],
+    "separate-markdown-files": false,
+    "comment": "using doc-n-save",
+    "lib": "rakulib",
+    "name": "upgrade-raku",
+    "bin": "bin",
+    "additional-pod-files": [
+    ]
+}
