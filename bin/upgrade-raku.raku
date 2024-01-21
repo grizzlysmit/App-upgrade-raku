@@ -4,7 +4,50 @@ use v6;
 my %*SUB-MAIN-OPTS;
 %*SUB-MAIN-OPTS«named-anywhere» = True;
 #%*SUB-MAIN-OPTS<bundling>       = True;
+use Terminal::ANSI::OO :t;
+use Terminal::Width;
+use Terminal::WCWidth;
+use ECMA262Regex;
+#use Usage::Utils;
+use Display::Listings;
+#use File::Utils;
 
+=begin pod
+
+=head1 App::upgrade-raku
+
+=begin head2
+
+Table of Contents
+
+=end head2
+
+=item1 L<NAME|#name>
+=item1 L<AUTHOR|#author>
+=item1 L<VERSION|#version>
+=item1 L<TITLE|#title>
+=item1 L<SUBTITLE|#subtitle>
+=item1 L<COPYRIGHT|#copyright>
+=item1 # L<Introduction|#introduction>
+=item2 # L<upgrade-raku build|#upgrade-raku-build>
+=item2 # L<upgrade-raku download|#upgrade-raku-download>
+
+=NAME App::upgrade-raku 
+=AUTHOR Francis Grizzly Smit (grizzly@smit.id.au)
+=VERSION 0.1.12
+=TITLE App::upgrade-raku
+=SUBTITLE A B<Raku> application for updating/upgrading the local B<Raku> install. It also installs and upgrades the packages and any system packages.
+
+=COPYRIGHT
+LGPL V3.0+ L<LICENSE|https://github.com/grizzlysmit/GUI-Editors/blob/main/LICENSE>
+
+L<Top of Document|#table-of-contents>
+
+=head1 Introduction
+
+ A B<Raku> application for updating/upgrading the local B<Raku> install. It also installs and upgrades the packages and any system packages. 
+
+=end pod
 
 my Str:D $config = "$*HOME/.local/share/upgrade-raku";
 
@@ -14,9 +57,9 @@ $config.IO.mkdir unless $config.IO ~~ :f;
 
 "$config/apt-packages".IO.spurt('') unless "$config/apt-packages".IO ~~ :f;
 
-my @zef-packages = "$config/zef-packages".IO.slurp().split(rx/\n/);
+my @zef-packages = "$config/zef-packages".IO.slurp().split(rx/\n/).grep({ !rx/ [ ^^ \h* '#' .* $$ || ^^ \s* $$ ] / }).map: { s/ ^ ( <-[ # ]>+ )  '#' .* /$0/; };
 
-my @apt-packages = "$config/apt-packages".IO.slurp().split(rx/\n/);
+my @apt-packages = "$config/apt-packages".IO.slurp().split(rx/\n/).grep({ !rx/ [ ^^ \s* '#' .* $$ || ^^ \s* $$ ] / }).map: { s/ ^ ( <-[ # ]>+ )  '#' .* /$0/; };
 
 sub install-pkgs(Bool:D $upgrade --> Num:D) {
     my Str:D $action = $upgrade ?? 'upgrade' !! 'install';
@@ -35,6 +78,18 @@ sub install-pkgs(Bool:D $upgrade --> Num:D) {
     }
     return $cnt.Num / $total.Num * 100.Num;
 }
+
+=begin pod
+
+=head3 upgrade-raku build
+
+=begin code :lang<raku>
+
+=end code
+
+L<Top of Document|#table-of-contents>
+
+=end pod
 
 multi sub MAIN('build', Bool:D :u(:$upgrade) = False --> Int:D) {
     if $upgrade {
@@ -130,7 +185,19 @@ multi sub MAIN('build', Bool:D :u(:$upgrade) = False --> Int:D) {
         $*ERR.say: "unknown version: $version";
         exit 2;
     }
-}
+} #'««« multi sub MAIN('build', Bool:D :u(:$upgrade) = False --> Int:D) »»»
+
+=begin pod
+
+=head3 upgrade-raku download
+
+=begin code :lang<raku>
+
+=end code
+
+L<Top of Document|#table-of-contents>
+
+=end pod
 
 multi sub MAIN('download', Bool:D :u(:$upgrade) = False --> Int:D) {
     if $upgrade {
@@ -190,7 +257,7 @@ multi sub MAIN('download', Bool:D :u(:$upgrade) = False --> Int:D) {
         $*ERR.say: "unknown version: $version";
         exit 2;
     }
-}
+} #`««« multi sub MAIN('download', Bool:D :u(:$upgrade) = False --> Int:D) »»»
 
 multi sub MAIN('dl', Bool:D :u(:$upgrade) = False --> Int:D) {
     MAIN('download', :$upgrade);
@@ -204,4 +271,35 @@ multi sub MAIN('add', 'zef', Str:D $pkg, *@additional-pkgs is copy --> Int:D) {
 multi sub MAIN('add', 'apt', Str:D $pkg, *@additional-pkgs is copy --> Int:D) {
     @additional-pkgs.prepend($pkg);
     "$config/apt-packages".IO.spurt(@additional-pkgs.join("\n"), :append);
+}
+
+multi sub MAIN('list', 'zef', Str $prefix = '',
+                               Bool:D :c(:color(:$colour)) = False,
+                               Bool:D :s(:$syntax) = False,
+                               Int:D :l(:$page-length) = 30,
+                               Str :p(:$pattern) = Str,
+                               Str :e(:$ecma-pattern) = Str --> Int:D) {
+        my Regex $_pattern;
+    with $pattern {
+        $_pattern = rx:i/ <$pattern> /;
+    } orwith $ecma-pattern {
+        $_pattern = ECMA262Regex.compile("^$ecma-pattern\$");
+    } else {
+        $_pattern = rx:i/^ .* $/;
+    }
+    my Str:D @fields = 'package';
+    my %defaults;
+    if list-by($prefix, $colour, $syntax, $page-length,
+                  $_pattern, @fields, %defaults, @zef-packages,
+                  #:&include-row, 
+                  #:&head-value, 
+                  #:&head-between,
+                  #:&field-value, 
+                  #:&between,
+                  #:&row-formatting
+                  ) {
+        exit 0;
+    } else {
+        exit 1;
+    }
 }

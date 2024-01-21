@@ -10,7 +10,7 @@
   ],
   "perl": "6.d",
   "source-url": "https://github.com/grizzlysmit/App-upgrade-raku.git",
-  "description": "A Raku application for .",
+  "description": "A Raku application for updating/upgrading the local Raku install. It also installs and upgrades the packages and any system packages.",
   "name": "App::upgrade-raku.raku",
   "tags": [
     ""
