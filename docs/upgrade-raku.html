@@ -24,7 +24,7 @@ Av8AAAD/AAAAAAAAAEAAAAAAAAAAGQAAAP/RAACR/35+/wAAAP8A+wL/AAAA2gAAAGX/AADa/35+
 AAAAZQAAAP8AAAD/AAAAAAAAAAAAAABlAAAA/4WFhQEAAAD/AAAAQAAAAAAAAAD/AAAA2gAAAGUA
 AAAAj/kAAAZgAAADgAAAgAEAAOAHAADgBwAAwAMAAIABAACAAQAAAAEAAAAAAAAAAAAAAAAAAAPA
 AACH4QAAzrMAAA==" rel="icon" type="image/x-icon" /><meta name="author" value="Francis Grizzly Smit (grizzly@smit.id.au)" />
-<meta name="version" value="0.1.12" />
+<meta name="version" value="0.1.0" />
 <style>.comment {
   color: #666; }
 
@@ -584,6 +584,11 @@ footer {
  <tr class="toc-level-1"><td class="toc-text"><a href="#Introduction">Introduction</a></td></tr>
  <tr class="toc-level-3"><td class="toc-text"><a href="#upgrade-raku_build">upgrade-raku build</a></td></tr>
  <tr class="toc-level-3"><td class="toc-text"><a href="#upgrade-raku_download">upgrade-raku download</a></td></tr>
+ <tr class="toc-level-3"><td class="toc-text"><a href="#upgrade-raku_dl">upgrade-raku dl</a></td></tr>
+ <tr class="toc-level-3"><td class="toc-text"><a href="#upgrade-raku_add_zef">upgrade-raku add zef</a></td></tr>
+ <tr class="toc-level-3"><td class="toc-text"><a href="#upgrade-raku_add_apt">upgrade-raku add apt</a></td></tr>
+ <tr class="toc-level-3"><td class="toc-text"><a href="#upgrade-raku_list_zef">upgrade-raku list zef</a></td></tr>
+ <tr class="toc-level-3"><td class="toc-text"><a href="#upgrade-raku_list_apt">upgrade-raku list apt</a></td></tr>
 </table></div>
 </nav><div id="App::upgrade-raku_0"></div><div class="subtitle"><p>A <strong>Raku</strong> application for updating/upgrading the local <strong>Raku</strong> install. It also installs and upgrades the packages and any system packages.</p></div><div class="pod-body"><section name="___top"><h1 id="App::upgrade-raku"><a href="#___top" class="u" title="go to top of document">App::upgrade-raku</a></h1>
 <h2 id="Table_of_Contents"><a href="#___top" class="u" title="go to top of document">Table of Contents</a></h2>
@@ -598,6 +603,14 @@ footer {
 <ul>
 <li><p><a href="#upgrade-raku-build">upgrade-raku build</a></p></li>
 <li><p><a href="#upgrade-raku-download">upgrade-raku download</a></p></li>
+<li><p><a href="#upgrade-raku-dl">upgrade-raku dl</a></p></li>
+<li><p><a href="#upgrade-raku-add-zef">upgrade-raku add zef</a></p></li>
+<li><p><a href="#upgrade-raku-add-apt">upgrade-raku add apt</a></p></li>
+<li><p><a href="#upgrade-raku-list-zef">upgrade-raku list zef</a></p></li>
+<li><p><a href="#upgrade-raku-list-apt">upgrade-raku list apt</a></p></li>
+<li><p><a href="#upgrade-raku-download">upgrade-raku download</a></p></li>
+<li><p><a href="#upgrade-raku-download">upgrade-raku download</a></p></li>
+<li><p><a href="#upgrade-raku-download">upgrade-raku download</a></p></li>
 </ul>
 </ul>
 <section>
@@ -609,10 +622,102 @@ footer {
 <p>LGPL V3.0+ <a href="https://github.com/grizzlysmit/GUI-Editors/blob/main/LICENSE">LICENSE</a></p>
 </section>
 <p><a href="#table-of-contents">Top of Document</a></p><h1 id="Introduction"><a href="#App::upgrade-raku_0" class="u" title="go to top of document">Introduction</a></h1>
-<pre class="pod-block-code">A B&lt;Raku&gt; application for updating/upgrading the local B&lt;Raku&gt; install. It also installs and upgrades the packages and any system packages. </pre></section><section name="pod"><h3 id="upgrade-raku_build"><a href="#App::upgrade-raku_0" class="u" title="go to top of document">upgrade-raku build</a></h3>
-<pre class="pod-block-code"></pre><p><a href="#table-of-contents">Top of Document</a></p></section><section name="pod"><h3 id="upgrade-raku_download"><a href="#App::upgrade-raku_0" class="u" title="go to top of document">upgrade-raku download</a></h3>
-<pre class="pod-block-code"></pre><p><a href="#table-of-contents">Top of Document</a></p></section>		</div>
-</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2024-01-21T19:28:26Z</span></div></footer>
+<pre class="pod-block-code">A B&lt;Raku&gt; application for updating/upgrading the local B&lt;Raku&gt; install. It also installs and upgrades the packages and any system packages. </pre><p><strong>NB: I only support the moar backend for now. And for now I only support the apt command as I use Ubuntu, I will give supporting other package managing software some thought</strong>.</p></section><section name="pod"><h3 id="upgrade-raku_build"><a href="#App::upgrade-raku_0" class="u" title="go to top of document">upgrade-raku build</a></h3>
+<p>Upgrade <strong>Raku</strong> using the <strong>rakubrew build moar</strong> method.</p><pre class="pod-block-code">multi sub MAIN('build',
+                Bool:D :u(:upgrade(:$upgrade-the-packages)) = False --&gt; Int:D) 
+
+</pre><p><a href="#table-of-contents">Top of Document</a></p></section><section name="pod"><h3 id="upgrade-raku_download"><a href="#App::upgrade-raku_0" class="u" title="go to top of document">upgrade-raku download</a></h3>
+<p>Upgrade <strong>Raku</strong> using the <strong>rakubrew download</strong> method.</p><pre class="pod-block-code">multi sub MAIN('download',
+                Bool:D :u(:upgrade(:$upgrade-the-packages)) = False --&gt; Int:D) 
+
+</pre><p><a href="#table-of-contents">Top of Document</a></p></section><section name="pod"><h3 id="upgrade-raku_dl"><a href="#App::upgrade-raku_0" class="u" title="go to top of document">upgrade-raku dl</a></h3>
+<p>An alias for <a href="#upgrade-raku-download">upgrade-raku download</a>.</p><pre class="pod-block-code">multi sub MAIN('dl',
+                Bool:D :u(:upgrade(:$upgrade-the-packages)) = False --&gt; Int:D) 
+
+</pre><p><a href="#table-of-contents">Top of Document</a></p></section><section name="pod"><h3 id="upgrade-raku_add_zef"><a href="#App::upgrade-raku_0" class="u" title="go to top of document">upgrade-raku add zef</a></h3>
+<p>Add <strong>Raku</strong> packages to be installed with <strong>zef</strong>.</p><pre class="pod-block-code">upgrade-raku add zef --help
+Usage:
+  upgrade-raku add zef &lt;pkg&gt; [&lt;additional-pkgs&gt; ...] [--force-test] [-c|--comment=&lt;Str&gt;] [--&lt;additional-pkgs-with-comments&gt;=...] 
+
+</pre><ul>
+<li><p>Where</p></li>
+<ul>
+<li><p><strong><code>pkg</code></strong> is a <strong>Raku</strong> package to be installed.</p></li>
+<li><p><strong><code>--force-test</code></strong> if present the package <strong>pkg</strong> will be installed with the --force-test option to zef.</p></li>
+<ul>
+<li><p>if you want to <strong>--force-test</strong> multiple packages you'll need to add them separately.</p></li>
+</ul>
+<li><p><strong><code>-c|--comment</code></strong> if supplied is a comment to add to <strong>pkg</strong>.</p></li>
+<li><p><strong><code>additional-pkgs</code></strong> is an array of packages to add without comments or options.</p></li>
+<li><p><strong><code>--additional-pkgs-with-comments=...</code></strong> is a hash of packages and comments to add.</p></li>
+<ul>
+<li><p>looks like this <strong>upgrade-raku add zef ... --pkg1=comment1 --pkg2=comment2 ...</strong>.</p></li>
+</ul>
+</ul>
+</ul>
+<p><a href="#table-of-contents">Top of Document</a></p></section><section name="pod"><h3 id="upgrade-raku_add_apt"><a href="#App::upgrade-raku_0" class="u" title="go to top of document">upgrade-raku add apt</a></h3>
+<p>Add system packages to be installed with <strong>apt</strong>.</p><pre class="pod-block-code">upgrade-raku add apt --help
+Usage:
+  upgrade-raku add apt &lt;pkg&gt; [&lt;additional-pkgs&gt; ...] [-c|--comment=&lt;Str&gt;] [--&lt;additional-pkgs-with-comments&gt;=...] 
+
+</pre><ul>
+<li><p>Where</p></li>
+<ul>
+<li><p><strong><code>pkg</code></strong> is a <strong>Raku</strong> package to be installed.</p></li>
+<li><p><strong><code>-c|--comment</code></strong> if supplied is a comment to add to <strong>pkg</strong>.</p></li>
+<li><p><strong><code>additional-pkgs</code></strong> is an array of packages to add without comments or options.</p></li>
+<li><p><strong><code>--additional-pkgs-with-comments=...</code></strong> is a hash of packages and comments to add.</p></li>
+<ul>
+<li><p>looks like this <strong>upgrade-raku add zef ... --pkg1=comment1 --pkg2=comment2 ...</strong>.</p></li>
+</ul>
+</ul>
+</ul>
+<p><a href="#table-of-contents">Top of Document</a></p></section><section name="pod"><h3 id="upgrade-raku_list_zef"><a href="#App::upgrade-raku_0" class="u" title="go to top of document">upgrade-raku list zef</a></h3>
+<p>List the <strong>Raku</strong> packages to be installed with <strong>zef</strong>.</p><pre class="pod-block-code">upgrade-raku list zef --help
+Usage:
+  upgrade-raku list zef [&lt;prefix&gt;] [-c|--color|--colour] [-s|--syntax] [-l|--page-length[=Int]] [-p|--pattern=&lt;Str&gt;] [-e|--ecma-pattern=&lt;Str&gt;]
+
+</pre><ul>
+<li><p>Where</p></li>
+<ul>
+<li><p><strong><code>prefix</code></strong> if present only lines that some field start with <strong>prefix</strong> will be listed.</p></li>
+<li><p><strong><code>-c|--color|--colour</code></strong> if present display ANSI coloured text.</p></li>
+<li><p><strong><code>-s|--syntax</code></strong> if present display text syntax highlighted.</p></li>
+<ul>
+<li><p><strong>NB: If both --syntax and --colour are supplied then --syntax wins</strong>.</p></li>
+</ul>
+<li><p><strong><code>-l|--page-length[=Int]</code></strong> if present sets the page length (defaults to 30 items).</p></li>
+<li><p><strong><code>-p|--pattern=&lt;Str&gt;</code></strong> if present only lines that have fields that match <strong>pattern</strong> are listed.</p></li>
+<li><p><strong><code>-e|--ecma-pattern=&lt;Str&gt;</code></strong> if present only lines that have fields that match <strong>pattern</strong> are listed.</p></li>
+<ul>
+<li><p><strong>If both --pattern and --ecma-pattern are supplied then --pattern wins</strong>.</p></li>
+</ul>
+</ul>
+</ul>
+<p><a href="#table-of-contents">Top of Document</a></p></section><section name="pod"><h3 id="upgrade-raku_list_apt"><a href="#App::upgrade-raku_0" class="u" title="go to top of document">upgrade-raku list apt</a></h3>
+<p>List the system packages to be installed with <strong>apt</strong>.</p><pre class="pod-block-code">upgrade-raku list apt --help
+Usage:
+  upgrade-raku list apt [&lt;prefix&gt;] [-c|--color|--colour] [-s|--syntax] [-l|--page-length[=Int]] [-p|--pattern=&lt;Str&gt;] [-e|--ecma-pattern=&lt;Str&gt;]
+
+</pre><ul>
+<li><p>Where</p></li>
+<ul>
+<li><p><strong><code>prefix</code></strong> if present only lines that some field start with <strong>prefix</strong> will be listed.</p></li>
+<li><p><strong><code>-c|--color|--colour</code></strong> if present display ANSI coloured text.</p></li>
+<li><p><strong><code>-s|--syntax</code></strong> if present display text syntax highlighted.</p></li>
+<ul>
+<li><p><strong>NB: If both --syntax and --colour are supplied then --syntax wins</strong>.</p></li>
+</ul>
+<li><p><strong><code>-l|--page-length[=Int]</code></strong> if present sets the page length (defaults to 30 items).</p></li>
+<li><p><strong><code>-p|--pattern=&lt;Str&gt;</code></strong> if present only lines that have fields that match <strong>pattern</strong> are listed.</p></li>
+<li><p><strong><code>-e|--ecma-pattern=&lt;Str&gt;</code></strong> if present only lines that have fields that match <strong>pattern</strong> are listed.</p></li>
+<ul>
+<li><p><strong>If both --pattern and --ecma-pattern are supplied then --pattern wins</strong>.</p></li>
+</ul>
+</ul>
+</ul>
+<p><a href="#table-of-contents">Top of Document</a></p></section>		</div>
+</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2024-01-22T06:44:00Z</span></div></footer>
 	</body>
 </html>
 

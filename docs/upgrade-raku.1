@@ -24,12 +24,44 @@ upgrade\-raku build [#upgrade-raku-build]
 .IP \(bu 2m
 upgrade\-raku download [#upgrade-raku-download]
 .RE
+.RS 2n
+.IP \(bu 2m
+upgrade\-raku dl [#upgrade-raku-dl]
+.RE
+.RS 2n
+.IP \(bu 2m
+upgrade\-raku add zef [#upgrade-raku-add-zef]
+.RE
+.RS 2n
+.IP \(bu 2m
+upgrade\-raku add apt [#upgrade-raku-add-apt]
+.RE
+.RS 2n
+.IP \(bu 2m
+upgrade\-raku list zef [#upgrade-raku-list-zef]
+.RE
+.RS 2n
+.IP \(bu 2m
+upgrade\-raku list apt [#upgrade-raku-list-apt]
+.RE
+.RS 2n
+.IP \(bu 2m
+upgrade\-raku download [#upgrade-raku-download]
+.RE
+.RS 2n
+.IP \(bu 2m
+upgrade\-raku download [#upgrade-raku-download]
+.RE
+.RS 2n
+.IP \(bu 2m
+upgrade\-raku download [#upgrade-raku-download]
+.RE
 .SH "NAME"
 App::upgrade\-raku 
 .SH "AUTHOR"
 Francis Grizzly Smit (grizzly@smit\&.id\&.au)
 .SH "VERSION"
-0\&.1\&.12
+0\&.1\&.0
 .SH "TITLE"
 App::upgrade\-raku
 .SH "SUBTITLE"
@@ -45,10 +77,17 @@ Top of Document [#table-of-contents]
 A B<Raku> application for updating/upgrading the local B<Raku> install\&. It also installs and upgrades the packages and any system packages\&. 
 .EE
 .RE
+.P
+\fBNB: I only support the moar backend for now\&. And for now I only support the apt command as I use Ubuntu, I will give supporting other package managing software some thought\fR\&.
 .SS upgrade\-raku build
+
+Upgrade \fBRaku\fR using the \fBrakubrew build moar\fR method\&.
 
 .RS 4m
 .EX
+multi sub MAIN('build',
+                Bool:D :u(:upgrade(:$upgrade\-the\-packages)) = False \-\-> Int:D) 
+
 
 .EE
 .RE
@@ -56,10 +95,223 @@ A B<Raku> application for updating/upgrading the local B<Raku> install\&. It als
 Top of Document [#table-of-contents]
 .SS upgrade\-raku download
 
+Upgrade \fBRaku\fR using the \fBrakubrew download\fR method\&.
+
 .RS 4m
 .EX
+multi sub MAIN('download',
+                Bool:D :u(:upgrade(:$upgrade\-the\-packages)) = False \-\-> Int:D) 
+
 
 .EE
 .RE
 .P
+Top of Document [#table-of-contents]
+.SS upgrade\-raku dl
+
+An alias for upgrade\-raku download [#upgrade-raku-download]\&.
+
+.RS 4m
+.EX
+multi sub MAIN('dl',
+                Bool:D :u(:upgrade(:$upgrade\-the\-packages)) = False \-\-> Int:D) 
+
+
+.EE
+.RE
+.P
+Top of Document [#table-of-contents]
+.SS upgrade\-raku add zef
+
+Add \fBRaku\fR packages to be installed with \fBzef\fR\&.
+
+.RS 4m
+.EX
+upgrade\-raku add zef \-\-help
+Usage:
+  upgrade\-raku add zef <pkg> [<additional\-pkgs> \&.\&.\&.] [\-\-force\-test] [\-c|\-\-comment=<Str>] [\-\-<additional\-pkgs\-with\-comments>=\&.\&.\&.] 
+
+
+.EE
+.RE
+.IP \(bu 2m
+Where
+.RS 2n
+.IP \(bu 2m
+\fBpkg\fR is a \fBRaku\fR package to be installed\&.
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-\-force\-test\fR if present the package \fBpkg\fR will be installed with the \-\-force\-test option to zef\&.
+.RE
+.RS 2n
+.RS 2n
+.IP \(bu 2m
+if you want to \fB\-\-force\-test\fR multiple packages you'll need to add them separately\&.
+.RE
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-c|\-\-comment\fR if supplied is a comment to add to \fBpkg\fR\&.
+.RE
+.RS 2n
+.IP \(bu 2m
+\fBadditional\-pkgs\fR is an array of packages to add without comments or options\&.
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-\-additional\-pkgs\-with\-comments=\&.\&.\&.\fR is a hash of packages and comments to add\&.
+.RE
+.RS 2n
+.RS 2n
+.IP \(bu 2m
+looks like this \fBupgrade\-raku add zef \&.\&.\&. \-\-pkg1=comment1 \-\-pkg2=comment2 \&.\&.\&.\fR\&.
+.RE
+.RE
+
+Top of Document [#table-of-contents]
+.SS upgrade\-raku add apt
+
+Add system packages to be installed with \fBapt\fR\&.
+
+.RS 4m
+.EX
+upgrade\-raku add apt \-\-help
+Usage:
+  upgrade\-raku add apt <pkg> [<additional\-pkgs> \&.\&.\&.] [\-c|\-\-comment=<Str>] [\-\-<additional\-pkgs\-with\-comments>=\&.\&.\&.] 
+
+
+.EE
+.RE
+.IP \(bu 2m
+Where
+.RS 2n
+.IP \(bu 2m
+\fBpkg\fR is a \fBRaku\fR package to be installed\&.
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-c|\-\-comment\fR if supplied is a comment to add to \fBpkg\fR\&.
+.RE
+.RS 2n
+.IP \(bu 2m
+\fBadditional\-pkgs\fR is an array of packages to add without comments or options\&.
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-\-additional\-pkgs\-with\-comments=\&.\&.\&.\fR is a hash of packages and comments to add\&.
+.RE
+.RS 2n
+.RS 2n
+.IP \(bu 2m
+looks like this \fBupgrade\-raku add zef \&.\&.\&. \-\-pkg1=comment1 \-\-pkg2=comment2 \&.\&.\&.\fR\&.
+.RE
+.RE
+
+Top of Document [#table-of-contents]
+.SS upgrade\-raku list zef
+
+List the \fBRaku\fR packages to be installed with \fBzef\fR\&.
+
+.RS 4m
+.EX
+upgrade\-raku list zef \-\-help
+Usage:
+  upgrade\-raku list zef [<prefix>] [\-c|\-\-color|\-\-colour] [\-s|\-\-syntax] [\-l|\-\-page\-length[=Int]] [\-p|\-\-pattern=<Str>] [\-e|\-\-ecma\-pattern=<Str>]
+
+
+.EE
+.RE
+.IP \(bu 2m
+Where
+.RS 2n
+.IP \(bu 2m
+\fBprefix\fR if present only lines that some field start with \fBprefix\fR will be listed\&.
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-c|\-\-color|\-\-colour\fR if present display ANSI coloured text\&.
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-s|\-\-syntax\fR if present display text syntax highlighted\&.
+.RE
+.RS 2n
+.RS 2n
+.IP \(bu 2m
+\fBNB: If both \-\-syntax and \-\-colour are supplied then \-\-syntax wins\fR\&.
+.RE
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-l|\-\-page\-length[=Int]\fR if present sets the page length (defaults to 30 items)\&.
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-p|\-\-pattern=<Str>\fR if present only lines that have fields that match \fBpattern\fR are listed\&.
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-e|\-\-ecma\-pattern=<Str>\fR if present only lines that have fields that match \fBpattern\fR are listed\&.
+.RE
+.RS 2n
+.RS 2n
+.IP \(bu 2m
+\fBIf both \-\-pattern and \-\-ecma\-pattern are supplied then \-\-pattern wins\fR\&.
+.RE
+.RE
+
+Top of Document [#table-of-contents]
+.SS upgrade\-raku list apt
+
+List the system packages to be installed with \fBapt\fR\&.
+
+.RS 4m
+.EX
+upgrade\-raku list apt \-\-help
+Usage:
+  upgrade\-raku list apt [<prefix>] [\-c|\-\-color|\-\-colour] [\-s|\-\-syntax] [\-l|\-\-page\-length[=Int]] [\-p|\-\-pattern=<Str>] [\-e|\-\-ecma\-pattern=<Str>]
+
+
+.EE
+.RE
+.IP \(bu 2m
+Where
+.RS 2n
+.IP \(bu 2m
+\fBprefix\fR if present only lines that some field start with \fBprefix\fR will be listed\&.
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-c|\-\-color|\-\-colour\fR if present display ANSI coloured text\&.
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-s|\-\-syntax\fR if present display text syntax highlighted\&.
+.RE
+.RS 2n
+.RS 2n
+.IP \(bu 2m
+\fBNB: If both \-\-syntax and \-\-colour are supplied then \-\-syntax wins\fR\&.
+.RE
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-l|\-\-page\-length[=Int]\fR if present sets the page length (defaults to 30 items)\&.
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-p|\-\-pattern=<Str>\fR if present only lines that have fields that match \fBpattern\fR are listed\&.
+.RE
+.RS 2n
+.IP \(bu 2m
+\fB\-e|\-\-ecma\-pattern=<Str>\fR if present only lines that have fields that match \fBpattern\fR are listed\&.
+.RE
+.RS 2n
+.RS 2n
+.IP \(bu 2m
+\fBIf both \-\-pattern and \-\-ecma\-pattern are supplied then \-\-pattern wins\fR\&.
+.RE
+.RE
+
 Top of Document [#table-of-contents]

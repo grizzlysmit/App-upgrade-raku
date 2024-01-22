@@ -2,7 +2,11 @@
   "version": "0.1.0",
   "license": "LGPL-3.0-or-later",
   "depends": [
-    ""
+    "Terminal::ANSI",
+    "Terminal::Width",
+    "Terminal::WCWidth",
+    "ECMA262Regex",
+    "Display::Listings"
   ],
   "auth": "zef:grizzlysmit",
   "test-depends": [
