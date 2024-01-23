@@ -43,7 +43,7 @@ Table of Contents
 
 =NAME App::upgrade-raku 
 =AUTHOR Francis Grizzly Smit (grizzly@smit.id.au)
-=VERSION 0.1.0
+=VERSION 0.1.1
 =TITLE App::upgrade-raku
 =SUBTITLE A B<Raku> application for updating/upgrading the local B<Raku> install. It also installs and upgrades the packages and any system packages.
 
@@ -99,6 +99,13 @@ sub install-pkgs(Bool:D $upgrade-the-packages --> Num:D) {
         $cnt++ if $p.exitcode != 0;
     }
     return $cnt.Num / $total.Num * 100.Num;
+}
+
+multi sub MAIN('install', 'pkgs',
+                Bool:D :u(:upgrade(:$upgrade-the-packages)) = False  --> Int:D) {
+    my Num:D $success = install-pkgs($upgrade-the-packages);
+    qq[$success% of packages upgraded successfully].say; 
+    exit 0
 }
 
 =begin pod

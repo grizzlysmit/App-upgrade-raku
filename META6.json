@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "LGPL-3.0-or-later",
   "depends": [
     "Terminal::ANSI",
@@ -17,7 +17,12 @@
   "description": "A Raku application for updating/upgrading the local Raku install. It also installs and upgrades the packages and any system packages.",
   "name": "App::upgrade-raku.raku",
   "tags": [
-    ""
+    "raku",
+    "rakubrew",
+    "development",
+    "zef",
+    "upgrade",
+    "install"
   ],
   "support": {
     "source": "https://github.com/grizzlysmit/App-upgrade-raku.git",
