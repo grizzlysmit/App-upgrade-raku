@@ -24,7 +24,7 @@ Av8AAAD/AAAAAAAAAEAAAAAAAAAAGQAAAP/RAACR/35+/wAAAP8A+wL/AAAA2gAAAGX/AADa/35+
 AAAAZQAAAP8AAAD/AAAAAAAAAAAAAABlAAAA/4WFhQEAAAD/AAAAQAAAAAAAAAD/AAAA2gAAAGUA
 AAAAj/kAAAZgAAADgAAAgAEAAOAHAADgBwAAwAMAAIABAACAAQAAAAEAAAAAAAAAAAAAAAAAAAPA
 AACH4QAAzrMAAA==" rel="icon" type="image/x-icon" /><meta name="author" value="Francis Grizzly Smit (grizzly@smit.id.au)" />
-<meta name="version" value="0.1.1" />
+<meta name="version" value="0.1.2" />
 <style>.comment {
   color: #666; }
 
@@ -622,7 +622,7 @@ footer {
 <p>LGPL V3.0+ <a href="https://github.com/grizzlysmit/GUI-Editors/blob/main/LICENSE">LICENSE</a></p>
 </section>
 <p><a href="#table-of-contents">Top of Document</a></p><h1 id="Introduction"><a href="#App::upgrade-raku_0" class="u" title="go to top of document">Introduction</a></h1>
-<pre class="pod-block-code">A B&lt;Raku&gt; application for updating/upgrading the local B&lt;Raku&gt; install. It also installs and upgrades the packages and any system packages. </pre><p><strong>NB: I only support the moar backend for now. And for now I only support the apt command as I use Ubuntu, I will give supporting other package managing software some thought</strong>.</p></section><section name="pod"><h3 id="upgrade-raku_build"><a href="#App::upgrade-raku_0" class="u" title="go to top of document">upgrade-raku build</a></h3>
+<pre class="pod-block-code">A B&lt;Raku&gt; application for updating/upgrading the local B&lt;Raku&gt; install. It also installs and upgrades the packages and any system packages. </pre><p><strong>NB: I only support the moar backend for now. And for now I only support the apt command as I use Ubuntu, I will give supporting other package managing software some thought</strong>.</p><p>b&lt;Note: uses <em>rakubrew</em> under the hood for the actual <em>Raku</em> install/upgrade, will check for a new version etc.&gt;</p></section><section name="pod"><h3 id="upgrade-raku_build"><a href="#App::upgrade-raku_0" class="u" title="go to top of document">upgrade-raku build</a></h3>
 <p>Upgrade <strong>Raku</strong> using the <strong>rakubrew build moar</strong> method.</p><pre class="pod-block-code">multi sub MAIN('build',
                 Bool:D :u(:upgrade(:$upgrade-the-packages)) = False --&gt; Int:D) 
 
@@ -717,7 +717,7 @@ Usage:
 </ul>
 </ul>
 <p><a href="#table-of-contents">Top of Document</a></p></section>		</div>
-</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2024-01-23T22:50:29Z</span></div></footer>
+</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2024-01-23T22:56:19Z</span></div></footer>
 	</body>
 </html>
 

@@ -43,7 +43,7 @@ Table of Contents
 
 =NAME App::upgrade-raku 
 =AUTHOR Francis Grizzly Smit (grizzly@smit.id.au)
-=VERSION 0.1.1
+=VERSION 0.1.2
 =TITLE App::upgrade-raku
 =SUBTITLE A B<Raku> application for updating/upgrading the local B<Raku> install. It also installs and upgrades the packages and any system packages.
 
@@ -58,6 +58,8 @@ L<Top of Document|#table-of-contents>
 
 B<NB: I only support the moar backend for now. And for now I only support the apt command as I use Ubuntu,
 I will give supporting other package managing software some thought>.
+
+b<Note: uses I<rakubrew> under the hood for the actual I<Raku> install/upgrade,  will check for a new version etc.>
 
 =end pod
 
