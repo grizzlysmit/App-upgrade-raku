@@ -345,8 +345,16 @@ multi sub MAIN('add', 'zef',
         $tail ~= " # $comment";
     }
     @additional-pkgs.prepend("$pkg$tail");
-    for %additional-pkgs-with-comments.kv -> Str:D $pkg, Str:D $comment {
-        @additional-pkgs.push: "$pkg   # $comment";
+    my $forcetest = '';
+    $forcetest = ' --force-test ' if $force-test;
+    for %additional-pkgs-with-comments.kv -> Str:D $pkg, $comment {
+        if $comment ~~ List {
+            for $comment.list -> Str:D $com {
+                @additional-pkgs.push: "$pkg $forcetest  # $com";
+            }
+        } else {
+            @additional-pkgs.push: "$pkg $forcetest  # $comment";
+        }
     }
     "$config/zef-packages".IO.spurt(@additional-pkgs.join("\n"), :append);
 }
