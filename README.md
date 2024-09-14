@@ -160,7 +160,7 @@ Usage:
 
     * **`--additional-pkgs-with-comments=...`** is a hash of packages and comments to add.
 
-      * looks like this **upgrade-raku add zef ... --pkg1=comment1 --pkg2=comment2 ...**.
+      * looks like this **upgrade-raku add apt ... --pkg1=comment1 --pkg2=comment2 ...**.
 
 [Top of Document](#table-of-contents)
 

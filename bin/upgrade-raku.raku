@@ -370,7 +370,7 @@ Usage:
 =item2 # B<C<-c|--comment>> if supplied is a comment to add to B<pkg>.
 =item2 # B<C<additional-pkgs>> is an array of packages to add without comments or options.
 =item2 # B<C<--additional-pkgs-with-comments=...>> is a hash of packages and comments to add.
-=item3 # looks like this B<upgrade-raku add zef ... --pkg1=comment1 --pkg2=comment2 ...>.
+=item3 # looks like this B<upgrade-raku add apt ... --pkg1=comment1 --pkg2=comment2 ...>.
 
 L<Top of Document|#table-of-contents>
 
